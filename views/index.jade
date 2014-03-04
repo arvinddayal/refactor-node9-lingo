@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1 Translator
+	.container
+		.search
+			form(action="/search", method="get")
+				input(type="text" name="search" placeholder="Translate")#searchbox
+				input(type="submit" name="search-button" placeholder="Translate")#searchbutton
+		.main
