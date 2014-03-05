@@ -6,5 +6,13 @@ block content
 		.search
 			form(action="/search", method="get")
 				input(type="text" name="search" placeholder="Translate")#searchbox
+				select(name="from")
+					for l in lang
+						option(name="from") #{l}
+				select(name="to")
+					for l in lang
+						option(name="to") #{l}
 				input(type="submit" name="search-button" placeholder="Translate")#searchbutton
 		.main
+		.quiz
+			a(href="/quiz") Go To Quiz

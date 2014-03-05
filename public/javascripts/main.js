@@ -1,12 +1,12 @@
 $(function(){
 
 //Search Function
-	$('#searchbox').keyup(function(){
-
+	$('#searchbutton').click(function(e){
+		e.preventDefault();
 		$.ajax('/search', {
-			data: $(this).serialize(),
+			data: $(this).parent().serialize(),			
 			success:function(data){
-				console.log(data);
+				$('.main').empty();
 				$('.main').html(data.translation);
 				}
 		});
