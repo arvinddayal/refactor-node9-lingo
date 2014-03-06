@@ -1,4 +1,40 @@
-extends layout
+extends quizLayout
 
 block content
-	h1 Quiz!
+	#myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true', data-show='true')
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+					h4#myModalLabel.modal-title Welcome to Language Quiz.
+				.modal-body
+					h5 Please select your language:
+					select#select-language(name="from")
+						for l in lang
+							option(name="from") #{l}
+				.modal-footer
+					button.btn.btn-default(type='button', data-dismiss='modal') Close
+					button#save-button.btn.btn-primary(type='button') Save changes
+	#startOver.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true', data-show='true')
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+					h4#startoverLabel.modal-title Welcome to Language Quiz.
+				.modal-body
+					h5 Please select your language:
+					select#reselect-language(name="from")
+						for l in lang
+							option(name="from") #{l}
+				.modal-footer
+					button.btn.btn-default(type='button', data-dismiss='modal') Close
+					button#startOver.btn.btn-primary(type='button') Save changes
+	.main-page
+		.quiz
+			.question
+			.answer
+				from
+					input#answer-box(type="text" name="Answer")
+					input#submit-answer(type="submit" value="Submit")
+			.result
+

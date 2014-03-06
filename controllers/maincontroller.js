@@ -10,6 +10,7 @@ var UserController = module.exports = {
 		res.render('index', {lang: lang});
 	},
 	search: function(req, res){
+		console.log(req.query);
 		var searchWord = req.query.search;
 		var fromLang = req.query.from;
 		var toLang = req.query.to;
@@ -17,7 +18,7 @@ var UserController = module.exports = {
 			{text: searchWord, from: fromLang, to: toLang},
 			function(err, results) {
 				if (err) {
-					return console.log(err);
+					console.log(err);
 				}
 			res.send(results);
 			}

@@ -31,6 +31,8 @@ if ('development' == app.get('env')) {
 app.get('/', mainController.index);
 app.get('/search', mainController.search);
 app.get('/quiz', quizController.index);
+app.get('/quiz/start', quizController.start);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
