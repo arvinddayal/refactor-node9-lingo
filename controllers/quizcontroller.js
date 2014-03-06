@@ -21,7 +21,19 @@ var UserController = module.exports = {
 				res.send({lang: req.query.language, word: results.translation});
 			}
 		);
-		
+	},
+	check: function(req,res){
+		var question = req.query.question;
+		var answer = req.query.answer;
+		var lang = req.query.lang;
+		var transWord = beglobal.translations.translate(
+			{text: question, from: lang, to: 'eng'},
+			function(err, results) {
+				if (err) {
+					console.log(err);
+				}
+				res.send(results.translation);
+			}
+		);
 	}
-
 };

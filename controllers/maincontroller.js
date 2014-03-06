@@ -10,7 +10,6 @@ var UserController = module.exports = {
 		res.render('index', {lang: lang});
 	},
 	search: function(req, res){
-		console.log(req.query);
 		var searchWord = req.query.search;
 		var fromLang = req.query.from;
 		var toLang = req.query.to;

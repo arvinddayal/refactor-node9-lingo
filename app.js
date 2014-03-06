@@ -32,6 +32,7 @@ app.get('/', mainController.index);
 app.get('/search', mainController.search);
 app.get('/quiz', quizController.index);
 app.get('/quiz/start', quizController.start);
+app.get('/check', quizController.check);
 
 
 http.createServer(app).listen(app.get('port'), function(){

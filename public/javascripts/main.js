@@ -6,9 +6,8 @@ $(function(){
 		$.ajax('/search', {
 			data: $(this).parent().serialize(),
 			success:function(data){
-				console.log(data);
-				$('.main').empty();
-				$('.main').html(data.translation);
+				$('#output-word').val("");
+				$('#output-word').val(data.translation);
 				}
 		});
 	});

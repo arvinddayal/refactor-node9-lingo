@@ -12,7 +12,9 @@ block content
 				select(name="to")
 					for l in lang
 						option(name="to") #{l}
-				input(type="submit" name="search-button" placeholder="Translate")#searchbutton
+				input(type="submit" name="search-button" placeholder="Text to Translate")#searchbutton
 		.main
+			form
+				input#output-word(type="text" placeholder="Translation Results")
 		.quiz
 			a(href="/quiz") Go To Quiz

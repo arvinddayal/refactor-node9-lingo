@@ -31,10 +31,10 @@ block content
 					button#startOver.btn.btn-primary(type='button') Save changes
 	.main-page
 		.quiz
-			.question
 			.answer
-				from
-					input#answer-box(type="text" name="Answer")
+				form(action="/check", method="get")
+					input#question-box(type="text" name="question")
+					input#answer-box(type="text" name="answer")
 					input#submit-answer(type="submit" value="Submit")
 			.result
 
