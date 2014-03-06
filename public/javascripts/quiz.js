@@ -13,10 +13,9 @@ $(function(){
 				currentLang.push(data.lang);
 				$('.main-page').prepend('<h1>This will test your '+data.lang+' knowledge.');
 				$('#question-box').val(data.word);
-				}
+		}
 		});
 		$('#myModal').modal('hide');
-		
 	});
 
 	$('#submit-answer').click(function(e){
@@ -32,35 +31,39 @@ $(function(){
 			success: function(data){
 				if (answer.toLowerCase() === data.toLowerCase()) {
 					$('.result').html("correct");
+					total.push("correct");
+					$.ajax('/quiz/start', {
+						data: {language: currentLang.toString()},
+						success:function(data){
+							$('#question-box').val(data.word);
+						}
+					});
 				}
 				else
-					$('.result').html("wrong");
-			}
+					if(wrong.length < 3){
+						$('.result').empty();
+						$('.result').html("Incorrect, you have " + (3- wrong.length) + " attempts remaing.");
+						wrong.push("wrong");
+						total.push("wrong");
+						$.ajax('/quiz/start', {
+							data: {language: currentLang.toString()},
+							success:function(data){
+								$('#question-box').val(data.word);
+							}
+						});
+					}
+					else{
+						$('body').empty();
+						$('body').append("<h1>You Failed!</h1><a href=/quiz><button class=restart'>Restart Quiz</button></a>");
+					}
+					if(total.length === 10){
+						$('body').empty();
+						$('body').append("<h1>You Passed!!!! Try the quiz in a different Language</h1><a href=/quiz><button class=restart'>Restart Quiz</button></a>");
+					}
+				}
+
 		});
 	});
-		// if(x === returnedWord) {
-		// 	$('.result').empty();
-		// 	$('.result').html("Correct!");
-		// 	total.push("correct");
-		// }
-		// else{
-		// 	if(wrong.length < 3){
-		// 		$('.result').empty();
-		// 		$('.result').html("Incorrect, you have " + (3- wrong.length) + " attempts remaing.");
-		// 		wrong.push("wrong");
-		// 		total.push("wrong");
-		// 	}
-		// 	else{
-		// 		$('body').empty();
-		// 		$('#startOver').modal('show');
-		// 	}
-		// }
-		// if(total.length === 10){
-		// 	$('body').empty();
-		// 	$('body').append("<h1>You Passed!!!! Try the quiz in a different Language</h1><button method='get 'action='/quiz' class='restart'>Restart Quizes</button>");
-		// }
-	// });
-
 
 
 
